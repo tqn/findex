@@ -1,5 +1,4 @@
 _ = require 'lodash'
-assert = require 'assert'
 expect = require('chai').expect
 map = require 'vinyl-map'
 path = require 'path'
