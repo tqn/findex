@@ -1,4 +1,3 @@
-_ = require 'lodash'
 expect = require('chai').expect
 map = require 'vinyl-map'
 path = require 'path'

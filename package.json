@@ -7,14 +7,16 @@
   "scripts": {
     "start": "node ./bin/index.js",
     "build": "gulp",
-    "test": "mocha --compilers coffee:coffee-script/register --reporter spec"
-  },
+    "test": "mocha --compilers coffee:coffee-script/register --reporter spec",
+    "preversion": "npm run build && npm test",
+    "postversion": "git push && git push --tags"
+  }
+}
   "author": "Tej Qu Nair",
-  "license": "ISC",
+  "license": "GPL-3.0",
   "dependencies": {
     "commander": "^2.8.1",
     "gulp-plumber": "^1.0.1",
-    "iced-runtime": "^1.0.3",
     "lodash": "^3.10.1",
     "vinyl-fs": "^2.1.1",
     "vinyl-map": "^1.0.1"
@@ -31,5 +33,14 @@
     "gulp-rename": "^1.2.2",
     "gulp-util": "^3.0.6",
     "mocha": "^2.3.3"
+  },
+  "preferGlobal": true,
+  "repository": {
+    "type": "git",
+    "url": "tqn/findex"
+  }
+  "bugs": {
+    "url": "https://github.com/tqn/findex/issues",
+    "email": "tej.q.nair@gmail.com"
   }
 }
