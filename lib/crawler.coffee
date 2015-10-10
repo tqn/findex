@@ -5,6 +5,7 @@ vfs = require 'vinyl-fs'
 
 # The crawler.
 crawler = (dirs = require('commander').args) ->
+  throw new Error('Crawler received no arguments') if dirs.length is 0
   vfs.src (path.join dir, '**/*.url' for dir in dirs)
     .pipe map (contents, filename) ->
       match =
