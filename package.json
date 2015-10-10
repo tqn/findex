@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node ./bin/index.js",
     "build": "gulp",
-    "test": "mocha --compilers coffee:coffee-script/register --reporter spec",
+    "test": "mocha",
     "preversion": "npm run build && npm test",
     "postversion": "git push && git push --tags"
   },

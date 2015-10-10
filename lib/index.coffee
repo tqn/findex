@@ -12,4 +12,7 @@ program
   .parse process.argv
 
 # Launch the crawler.
-crawler()
+unless program.args.length is 0
+  crawler program.args
+else
+  program.help()
