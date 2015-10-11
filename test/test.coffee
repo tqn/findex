@@ -37,6 +37,7 @@ describe 'The command line program', ->
         # expect(stdout.toString()).to.match /^\s*$/
         done()
 
+  it 'should have errors when called with invalid arguments'
 
 describe 'The file system crawler', ->
   @timeout 2000
