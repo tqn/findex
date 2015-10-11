@@ -6,9 +6,8 @@
   "bin": "./bin/index.js",
   "scripts": {
     "start": "node ./bin/index.js",
-    "build": "gulp",
     "test": "mocha",
-    "preversion": "npm run build && npm test",
+    "preversion": "npm test",
     "postversion": "git push && git push --tags"
   },
   "author": "Tej Qu Nair",
@@ -22,14 +21,7 @@
   },
   "devDependencies": {
     "chai": "^3.3.0",
-    "gulp-cached": "^1.1.0",
     "gulp-clip-empty-files": "^0.1.1",
-    "gulp-debug": "^2.1.1",
-    "gulp-notify": "^2.2.0",
-    "gulp-plumber": "^1.0.1",
-    "gulp-rename": "^1.2.2",
-    "gulp-util": "^3.0.6",
-    "gulp": "^3.9.0",
     "mocha": "^2.3.3"
   },
   "preferGlobal": true,
