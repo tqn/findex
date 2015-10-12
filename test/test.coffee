@@ -1,5 +1,6 @@
 exec = require('child_process').exec
 expect = require('chai').expect
+File = require 'vinyl'
 map = require 'vinyl-map'
 path = require 'path'
 
@@ -61,3 +62,30 @@ describe 'The file system crawler', ->
         expect(VALID).to.contain filename
         return contents
       .on 'end', done
+
+describe.only 'The document indexer', ->
+  @timeout 4000
+  @slow 1000
+
+  it 'should index vinyl file contents into elasticsearch', (done) ->
+    # init with a specific index and type
+    init = require '../lib/init'
+    init
+      host: 'localhost:9200'
+      index: ".test-findex-#{new Date().toISOString()}"
+      type: 'test'
+
+    indexer = require '../lib/indexer'
+    console.log "#{init.host}/#{init.index}/#{init.type}"
+
+    # Create a test file to be sent to elasticsearch
+    new File contents: new Buffer('Test contents')
+      .pipe indexer()
+      .pipe map (err) -> expect(err).to.be.empty
+      .on 'end', ->
+        # Wait for any ping issues
+        setTimeout ->
+          init.es.indices.delete index: init.index
+          .then done, (err) -> throw err
+        , 1000
+        # done()

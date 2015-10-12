@@ -15,6 +15,7 @@
   "dependencies": {
     "coffee-script": "^1.10.0",
     "commander": "^2.8.1",
+    "elasticsearch": "^8.2.0",
     "lodash": "^3.10.1",
     "vinyl-fs": "^2.1.1",
     "vinyl-map": "^1.0.1"
@@ -22,7 +23,8 @@
   "devDependencies": {
     "chai": "^3.3.0",
     "gulp-clip-empty-files": "^0.1.1",
-    "mocha": "^2.3.3"
+    "mocha": "^2.3.3",
+    "vinyl": "^1.0.0"
   },
   "preferGlobal": true,
   "repository": {
