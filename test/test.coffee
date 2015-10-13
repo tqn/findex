@@ -63,7 +63,7 @@ describe 'The file system crawler', ->
         return contents
       .on 'end', done
 
-describe.only 'The document indexer', ->
+describe 'The document indexer', ->
   @timeout 10000
   @slow 6000
 
