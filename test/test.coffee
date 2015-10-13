@@ -1,8 +1,8 @@
 exec = require('child_process').exec
 expect = require('chai').expect
-File = require 'vinyl'
 map = require 'vinyl-map'
 path = require 'path'
+vfs = require 'vinyl-fs'
 
 # Create a function to normalize and make paths absolute
 normalize = (paths = []) ->
@@ -72,20 +72,22 @@ describe.only 'The document indexer', ->
     init = require '../lib/init'
     init
       host: 'localhost:9200'
-      index: ".test-findex-#{new Date().toISOString()}"
+      index: ".test-findex-#{Date.now()}"
       type: 'test'
 
     indexer = require '../lib/indexer'
     console.log "#{init.host}/#{init.index}/#{init.type}"
 
-    # Create a test file to be sent to elasticsearch
-    new File contents: new Buffer('Test contents')
+
+    # Get a test file to be sent to elasticsearch
+    vfs.src normalize ['test/fixtures/test.file']
       .pipe indexer()
       .pipe map (err) -> expect(err).to.be.empty
       .on 'end', ->
         # Wait for any ping issues
         setTimeout ->
           init.es.indices.delete index: init.index
-          .then done, (err) -> throw err
-        , 1000
+          .then -> done()
+          .catch (err) -> throw err
+        , 100
         # done()
