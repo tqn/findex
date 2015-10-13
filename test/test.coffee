@@ -2,6 +2,7 @@ exec = require('child_process').exec
 expect = require('chai').expect
 map = require 'vinyl-map'
 path = require 'path'
+vfs = require 'vinyl-fs'
 
 # Create a function to normalize and make paths absolute
 normalize = (paths = []) ->
@@ -61,3 +62,30 @@ describe 'The file system crawler', ->
         expect(VALID).to.contain filename
         return contents
       .on 'end', done
+
+describe.only 'The document indexer', ->
+  @timeout 10000
+  @slow 1000
+
+  it 'should index vinyl file contents into elasticsearch', (done) ->
+    # init with a specific index and type
+    init = require '../lib/init'
+    init
+      host: 'localhost:9200'
+      index: ".test-findex-#{Date.now()}"
+      type: 'test'
+
+    indexer = require '../lib/indexer'
+
+
+    # Get a test file to be sent to elasticsearch
+    vfs.src normalize ['test/fixtures/test.file']
+      .pipe indexer()
+      .on 'end', ->
+        # Wait for any ping issues
+        setTimeout ->
+          init.es.indices.delete index: init.index
+          .then -> done()
+          .catch (err) -> throw err
+        , 5000
+        # done()
