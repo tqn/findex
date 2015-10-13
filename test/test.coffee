@@ -82,7 +82,6 @@ describe.only 'The document indexer', ->
     # Get a test file to be sent to elasticsearch
     vfs.src normalize ['test/fixtures/test.file']
       .pipe indexer()
-      .pipe map (err) -> expect(err).to.be.empty
       .on 'end', ->
         # Wait for any ping issues
         setTimeout ->
