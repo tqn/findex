@@ -65,7 +65,7 @@ describe 'The file system crawler', ->
 
 describe.only 'The document indexer', ->
   @timeout 10000
-  @slow 1000
+  @slow 6000
 
   it 'should index vinyl file contents into elasticsearch', (done) ->
     # init with a specific index and type
@@ -88,4 +88,3 @@ describe.only 'The document indexer', ->
           .then -> done()
           .catch (err) -> throw err
         , 5000
-        # done()
