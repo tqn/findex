@@ -64,10 +64,10 @@ describe 'The file system crawler', ->
       .on 'end', done
 
 describe 'The document indexer', ->
-  @timeout 10000
+  @timeout 30000
   @slow 6000
 
-  it 'should index vinyl file contents into elasticsearch', (done) ->
+  it 'should index file contents into elasticsearch', (done) ->
     # init with a specific index and type
     init = require '../lib/init'
     init
