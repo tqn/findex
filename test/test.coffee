@@ -64,7 +64,7 @@ describe 'The file system crawler', ->
       .on 'end', done
 
 describe.only 'The document indexer', ->
-  @timeout 4000
+  @timeout 10000
   @slow 1000
 
   it 'should index vinyl file contents into elasticsearch', (done) ->
@@ -76,7 +76,6 @@ describe.only 'The document indexer', ->
       type: 'test'
 
     indexer = require '../lib/indexer'
-    console.log "#{init.host}/#{init.index}/#{init.type}"
 
 
     # Get a test file to be sent to elasticsearch
@@ -88,5 +87,5 @@ describe.only 'The document indexer', ->
           init.es.indices.delete index: init.index
           .then -> done()
           .catch (err) -> throw err
-        , 100
+        , 5000
         # done()
