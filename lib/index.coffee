@@ -17,12 +17,12 @@ program
 
 init()
 
-unless program.user?.length or init.config.user?
-  console.log 'No user provided'
-  program.help()
-
 # Launch the crawler.
 unless program.args.length is 0
-  crawler program.args
+  unless program.user?.length or init.config.user?
+    console.log 'No user provided'
+    program.help()
+  else
+    crawler program.args
 else
   program.help()
