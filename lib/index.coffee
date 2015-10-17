@@ -3,6 +3,7 @@ path = require 'path'
 program = require 'commander'
 
 crawler = require './crawler'
+indexer = require './indexer'
 init = require './init'
 
 # Create the commander program.
@@ -19,5 +20,6 @@ program
 # Launch the crawler.
 if program.args.length isnt 0 and init()
   crawler program.args
+    .pipe indexer()
 else
   program.help()

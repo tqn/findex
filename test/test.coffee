@@ -4,6 +4,8 @@ map = require 'vinyl-map'
 path = require 'path'
 vfs = require 'vinyl-fs'
 
+init = require '../lib/init'
+
 # Create a function to normalize and make paths absolute
 normalize = (paths = []) ->
   # Work with strings and arrays
@@ -15,8 +17,12 @@ normalize = (paths = []) ->
   paths = paths[0] if isString
   return paths
 
+index = ".test-findex-#{Date.now()}"
+
+
+
 describe 'The command line program', ->
-  @timeout 2000
+  @timeout 30000
   @slow 700
 
   it 'should output --help when called with no arguments', (done) ->
@@ -28,13 +34,23 @@ describe 'The command line program', ->
       expect(stdout.toString()).to.match /^\s*Usage:/
       done()
 
-  it 'should have no errors when called with valid arguments', (done) ->
-    exec 'node ../bin/index.js -i test -t test ./fixtures/url/',
+  it 'should index .url files into elasticsearch', (done) ->
+    exec "node ../bin/index.js -i #{index} -t commandline ./fixtures/url/",
       cwd: __dirname, (err, stdout, stderr) ->
         # Make sure exec didn't have any issues
         expect(err).to.not.be.an.instanceof Error
         expect(stderr).to.be.empty
-        done()
+        # Delete the temporary index
+        setTimeout ->
+          # These params are to make sure init doesn't throw errors
+          init
+            host: 'localhost:9200'
+            index: index
+            type: 'indexer'
+          init.es.indices.delete index: init.index
+          .then -> done()
+          .catch (err) -> throw err
+        , 5000
 
   it 'should have errors when called with invalid arguments', (done) ->
     exec 'node ../bin/index.js ./fixtures/url/',
@@ -72,11 +88,10 @@ describe 'The document indexer', ->
 
   it 'should index file contents into elasticsearch', (done) ->
     # init with a specific index and type
-    init = require '../lib/init'
     init
       host: 'localhost:9200'
-      index: ".test-findex-#{Date.now()}"
-      type: 'test'
+      index: index
+      type: 'indexer'
 
     indexer = require '../lib/indexer'
 
