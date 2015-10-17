@@ -15,14 +15,9 @@ program
   .option '-u, --user [name]', 'Overwrite user'
   .parse process.argv
 
-init()
 
 # Launch the crawler.
-unless program.args.length is 0
-  unless program.user?.length or init.config.user?
-    console.log 'No user provided'
-    program.help()
-  else
-    crawler program.args
+if program.args.length isnt 0 and init()
+  crawler program.args
 else
   program.help()

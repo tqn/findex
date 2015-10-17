@@ -24,21 +24,24 @@ describe 'The command line program', ->
     # Otherwise it would use the test's arguments
     exec 'node ../bin/index.js', cwd: __dirname, (err, stdout, stderr) ->
       expect(err).to.be.empty
-      expect(stderr.toString()).to.be.empty
+      expect(stderr).to.be.empty
       expect(stdout.toString()).to.match /^\s*Usage:/
       done()
 
   it 'should have no errors when called with valid arguments', (done) ->
-    exec 'node ../bin/index.js -- ./fixtures/url/',
+    exec 'node ../bin/index.js -i test -t test ./fixtures/url/',
       cwd: __dirname, (err, stdout, stderr) ->
         # Make sure exec didn't have any issues
         expect(err).to.not.be.an.instanceof Error
-
         expect(stderr).to.be.empty
-        # expect(stdout.toString()).to.match /^\s*$/
         done()
 
-  it 'should have errors when called with invalid arguments'
+  it 'should have errors when called with invalid arguments', (done) ->
+    exec 'node ../bin/index.js ./fixtures/url/',
+      cwd: __dirname, (err, stdout, stderr) ->
+        expect(err).to.not.be.an.instanceof Error
+        expect(stderr).to.not.be.empty
+        done()
 
 describe 'The file system crawler', ->
   @timeout 2000
