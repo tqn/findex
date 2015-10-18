@@ -2,6 +2,7 @@
 
 [![GitHub release](https://img.shields.io/github/release/tqn/findex.svg?style=flat-square)](https://github.com/tqn/findex/latest)
 [![Travis](https://img.shields.io/travis/tqn/findex.svg?style=flat-square&branch=master)](https://travis-ci.org/tqn/findex)
+[![Coveralls](https://img.shields.io/coveralls/tqn/findex.svg?style=flat-square)](https://coveralls.io/github/tqn/findex)
 [![David](https://img.shields.io/david/tqn/findex.svg?style=flat-square)](https://david-dm.org/tqn/findex#info=dependencies)
 [![David](https://img.shields.io/david/dev/tqn/findex.svg?style=flat-square)](https://david-dm.org/tqn/findex#info=devDependencies)
 

@@ -6,7 +6,7 @@
   "bin": "./bin/index.js",
   "scripts": {
     "start": "node ./bin/index.js",
-    "test": "mocha",
+    "test": "mocha && istanbul report text-summary lcov",
     "preversion": "npm test",
     "postversion": "git push --follow-tags"
   },
@@ -22,7 +22,10 @@
   },
   "devDependencies": {
     "chai": "^3.3.0",
+    "coffee-coverage": "^0.6.3",
+    "coveralls": "^2.11.4",
     "gulp-clip-empty-files": "^0.1.1",
+    "istanbul": "^0.4.0",
     "mocha": "^2.3.3"
   },
   "preferGlobal": true,
