@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 path = require 'path'
 program = require 'commander'
 
