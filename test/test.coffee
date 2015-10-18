@@ -55,6 +55,8 @@ describe 'The command line program', ->
         expect(stderr).to.not.be.empty
         done()
 
+  it 'should have a configurable elasticsearch document to index'
+
 describe 'The file system crawler', ->
   @timeout 2000
   @slow 70
