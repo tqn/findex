@@ -10,7 +10,7 @@ init = require '../lib/init'
 init
   host: 'localhost:9200'
   index: ".test-findex-#{Date.now()}"
-  type: 'dummy'
+  type: 'indexer' # used by the last test
 
 # Create a function to normalize and make paths absolute
 normalize = (paths = []) ->
