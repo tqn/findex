@@ -6,6 +6,12 @@ vfs = require 'vinyl-fs'
 
 init = require '../lib/init'
 
+
+init
+  host: 'localhost:9200'
+  index: ".test-findex-#{Date.now()}"
+  type: 'dummy'
+
 # Create a function to normalize and make paths absolute
 normalize = (paths = []) ->
   # Work with strings and arrays
@@ -17,7 +23,6 @@ normalize = (paths = []) ->
   paths = paths[0] if isString
   return paths
 
-index = ".test-findex-#{Date.now()}"
 
 
 
@@ -35,22 +40,14 @@ describe 'The command line program', ->
       done()
 
   it 'should index .url files into elasticsearch', (done) ->
-    exec "node ../bin/index.js -i #{index} -t commandline ./fixtures/url/",
+    exec "node ../bin/index.js -i #{init.index} -t commandline ./fixtures/url/",
       cwd: __dirname, (err, stdout, stderr) ->
         # Make sure exec didn't have any issues
         expect(err).to.not.be.an.instanceof Error
         expect(stderr).to.be.empty
         # Delete the temporary index
-        setTimeout ->
-          # These params are to make sure init doesn't throw errors
-          init
-            host: 'localhost:9200'
-            index: index
-            type: 'indexer'
-          init.es.indices.delete index: init.index
-          .then -> done()
-          .catch (err) -> throw err
-        , 5000
+        # These params are to make sure init doesn't throw errors
+        init.es.indices.delete index: init.index, done
 
   it 'should have errors when called with invalid arguments', (done) ->
     exec 'node ../bin/index.js ./fixtures/url/',
@@ -88,10 +85,6 @@ describe 'The document indexer', ->
 
   it 'should index file contents into elasticsearch', (done) ->
     # init with a specific index and type
-    init
-      host: 'localhost:9200'
-      index: index
-      type: 'indexer'
 
     indexer = require '../lib/indexer'
 
