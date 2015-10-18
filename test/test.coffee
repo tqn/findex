@@ -95,7 +95,5 @@ describe 'The document indexer', ->
       .on 'end', ->
         # Wait for any ping issues
         setTimeout ->
-          init.es.indices.delete index: init.index
-          .then -> done()
-          .catch (err) -> throw err
+          init.es.indices.delete index: init.index, done
         , 5000
