@@ -46,7 +46,6 @@ describe 'The command line program', ->
         expect(err).to.not.be.an.instanceof Error
         expect(stderr).to.be.empty
         # Delete the temporary index
-        # These params are to make sure init doesn't throw errors
         init.es.indices.delete index: init.index, done
 
   it 'should have errors when called with invalid arguments', (done) ->
