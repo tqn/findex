@@ -33,9 +33,9 @@ describe 'The command line program', ->
   it 'should output --help when called with no arguments', (done) ->
     # Execute the program in a child process
     # Otherwise it would use the test's arguments
-    exec 'node ../bin/index.js', cwd: __dirname, (err, stdout, stderr) ->
+    exec "node ../bin/index.js", cwd: __dirname, (err, stdout, stderr) ->
       expect(err).to.be.empty
-      expect(stderr).to.be.empty
+      expect(stderr.toString()).to.match /^(=+|$)/
       expect(stdout.toString()).to.match /^\s*Usage:/
       done()
 
