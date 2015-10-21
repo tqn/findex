@@ -6,7 +6,7 @@
 [![David](https://img.shields.io/david/tqn/findex.svg?style=flat-square)](https://david-dm.org/tqn/findex#info=dependencies)
 [![David](https://img.shields.io/david/dev/tqn/findex.svg?style=flat-square)](https://david-dm.org/tqn/findex#info=devDependencies)
 
-Crawls a directory you give it to to search for `.url` files, then indexes those URLs into elasticsearch.
+Crawls a directory you give it to to search for `.url` files, then indexes those URLs into [Elasticsearch](https://www.elastic.co/products/elasticsearch).
 
 ## Setup
 1. Install this package globally.
