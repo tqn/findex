@@ -6,7 +6,8 @@
   "bin": "./bin/index.js",
   "scripts": {
     "start": "node ./bin/index.js",
-    "test": "mocha && istanbul report text-summary lcov",
+    "test": "mocha",
+    "coverage": "mocha --reporter mocha-lcov-reporter > ./coverage/lcov.dat",
     "preversion": "npm test",
     "postversion": "git push --follow-tags"
   },
@@ -21,12 +22,18 @@
     "vinyl-map": "^1.0.1"
   },
   "devDependencies": {
+    "blanket": "^1.1.7",
     "chai": "^3.3.0",
-    "coffee-coverage": "^0.6.3",
     "coveralls": "^2.11.4",
     "gulp-clip-empty-files": "^0.1.1",
-    "istanbul": "^0.4.0",
-    "mocha": "^2.3.3"
+    "mocha": "^2.3.3",
+    "mocha-lcov-reporter": "^1.0.0"
+  },
+  "config": {
+    "blanket": {
+      "pattern": "test",
+      "loader": "./node-loaders/coffee-script"
+    }
   },
   "preferGlobal": true,
   "repository": {

@@ -35,7 +35,7 @@ describe 'The command line program', ->
     # Otherwise it would use the test's arguments
     exec 'node ../bin/index.js', cwd: __dirname, (err, stdout, stderr) ->
       expect(err).to.not.exist
-      expect(stderr).to.be.empty
+      expect(stderr.toString()).to.match /^(=+|$)/
       expect(stdout.toString()).to.match /^\s*Usage:/
       done()
 
