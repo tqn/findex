@@ -1,12 +1,12 @@
 # findex
 
-[![GitHub release](https://img.shields.io/github/release/tqn/findex.svg?style=flat-square)](https://github.com/tqn/findex/latest)
+[![GitHub release](https://img.shields.io/github/release/tqn/findex.svg?style=flat-square)](https://github.com/tqn/findex/releases/latest)
 [![Travis](https://img.shields.io/travis/tqn/findex.svg?style=flat-square&branch=master)](https://travis-ci.org/tqn/findex)
 [![Coveralls](https://img.shields.io/coveralls/tqn/findex.svg?style=flat-square)](https://coveralls.io/github/tqn/findex)
 [![David](https://img.shields.io/david/tqn/findex.svg?style=flat-square)](https://david-dm.org/tqn/findex#info=dependencies)
 [![David](https://img.shields.io/david/dev/tqn/findex.svg?style=flat-square)](https://david-dm.org/tqn/findex#info=devDependencies)
 
-Crawls a directory you give it to to search for `.url` files, then indexes those URLs into elasticsearch.
+Crawls a directory you give it to to search for `.url` files, then indexes those URLs into [Elasticsearch](https://www.elastic.co/products/elasticsearch).
 
 ## Setup
 1. Install this package globally.

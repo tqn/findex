@@ -11,7 +11,7 @@ indexer = map (contents, filename) ->
       url: contents.toString()
       user: program.user ? init.config.user
       status: 0
-  .catch -> throw err if err?
+  .catch (err) -> throw err
 
   return contents
 

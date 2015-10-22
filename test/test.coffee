@@ -33,8 +33,8 @@ describe 'The command line program', ->
   it 'should output --help when called with no arguments', (done) ->
     # Execute the program in a child process
     # Otherwise it would use the test's arguments
-    exec "node ../bin/index.js", cwd: __dirname, (err, stdout, stderr) ->
-      expect(err).to.be.empty
+    exec 'node ../bin/index.js', cwd: __dirname, (err, stdout, stderr) ->
+      expect(err).to.not.exist
       expect(stderr.toString()).to.match /^(=+|$)/
       expect(stdout.toString()).to.match /^\s*Usage:/
       done()
@@ -43,7 +43,7 @@ describe 'The command line program', ->
     exec "node ../bin/index.js -i #{init.index} -t commandline ./fixtures/url/",
       cwd: __dirname, (err, stdout, stderr) ->
         # Make sure exec didn't have any issues
-        expect(err).to.not.be.an.instanceof Error
+        expect(err).to.not.exist
         expect(stderr).to.be.empty
         # Delete the temporary index
         init.es.indices.delete index: init.index, done
@@ -51,7 +51,7 @@ describe 'The command line program', ->
   it 'should have errors when called with invalid arguments', (done) ->
     exec 'node ../bin/index.js ./fixtures/url/',
       cwd: __dirname, (err, stdout, stderr) ->
-        expect(err).to.not.be.an.instanceof Error
+        expect(err).to.not.exist
         expect(stderr).to.not.be.empty
         done()
 
