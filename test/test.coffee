@@ -31,7 +31,7 @@ normalize = (paths = []) ->
 
 describe 'The command line program', ->
   @timeout 30000
-  @slow 2500
+  @slow 3500
 
 
   describe 'indexing .url files into elasticsearch', ->
@@ -62,7 +62,7 @@ describe 'The command line program', ->
               expect(res.hits.hits[0]._source).to.have.all.keys init.doc
               done()
             .catch done
-          , 1000
+          , 2000
 
   describe 'calling with incorrect arguments', ->
 
@@ -125,4 +125,4 @@ describe 'The document indexer', ->
     setTimeout ->
       init.es.indices.delete index: init.index
       .catch (err) -> throw err
-    , 1000
+    , 2000
