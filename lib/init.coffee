@@ -13,7 +13,7 @@ exports = module.exports = (config = configfile) ->
     host: exports.host
     apiVersion: '1.7'
 
-  for own k, v of module.exports when !v?
+  for own k, v of exports when !v?
     console.error "#{k} not defined"
     return false
 
