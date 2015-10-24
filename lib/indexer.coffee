@@ -9,7 +9,7 @@ indexer = map (contents, filename) ->
     type: init.type
     body:
       url: contents.toString()
-      user: program.user ? init.config.user
+      user: init.user ? undefined
       status: 0
   .catch (err) -> throw err
 
