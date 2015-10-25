@@ -126,6 +126,6 @@ describe 'findex', ->
     # Wait for any ping issues
     setTimeout ->
       init.es.indices.delete index: init.index
-      .catch (err) -> throw err
+      .catch done
       done()
     , 2000
