@@ -6,9 +6,8 @@ vbuffer = require 'vinyl-buffer'
 init = require './init'
 
 indexer = -> _.pipeline(
-  _.through vbuffer,
-  # _.consume doesn't work for some reason
-  (s) -> s.consume (err, file, push, next) ->
+  _.through(vbuffer()),
+  _.consume((err, file, push, next) ->
     setImmediate ->
       # Return empty if no error
       if err
@@ -24,7 +23,11 @@ indexer = -> _.pipeline(
             url: file.contents.toString()
             user: init.user ? undefined
             status: 0
-        , next
+        .then (res) ->
+          push null, res
+          next()
+        .catch next
+    )
 )
 
 
