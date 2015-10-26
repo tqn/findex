@@ -1,6 +1,5 @@
 exec = require('child_process').exec
 expect = require('chai').expect
-map = require 'vinyl-map'
 path = require 'path'
 vfs = require 'vinyl-fs'
 
