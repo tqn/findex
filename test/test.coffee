@@ -104,10 +104,8 @@ describe 'findex', ->
       DIRS = normalize ("test/fixtures/url/folder#{n}" for n in [1..2])
       # Call crawler with fixtures and assert that they are equal
       crawler DIRS
-        .pipe map (contents, filename) ->
-          expect(VALID).to.contain filename
-          return contents
-        .on 'end', done
+        .each (file) -> expect(VALID).to.contain file.path
+        .done done
 
   describe 'the document indexer', ->
     @timeout 30000

@@ -1,17 +1,22 @@
+_ = require 'highland'
 map = require 'vinyl-map'
-clip = require 'gulp-clip-empty-files'
 path = require 'path'
+vbuffer = require 'vinyl-buffer'
 vfs = require 'vinyl-fs'
 
 # The crawler.
 crawler = (dirs) ->
-  vfs.src (path.join dir, '**/*.url' for dir in dirs)
-    .pipe map (contents, filename) ->
+  _ vfs.src (path.join dir, "**#{path.sep}*.url" for dir in dirs)
+    .through vbuffer()
+    .reject (file) -> file.isNull() or file.contents.length is 0
+    .map (file) ->
       match =
-        /\[InternetShortcut\](?:\r\n?|\n)URL=(.+)/.exec contents?.toString()
+        /\[InternetShortcut\](?:\r\n?|\n)URL=(.+)/.exec file.contents.toString()
       # Empty the invalid files
-      return if match? then match[1] else ''
-    # Delete those empty files!
-    .pipe clip()
+      if match?
+        file = file.clone()
+        file.contents = new Buffer match[1]
+        return file
+    .compact()
 
 module.exports = crawler
