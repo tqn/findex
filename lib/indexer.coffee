@@ -1,5 +1,4 @@
 _ = require 'highland'
-map = require 'vinyl-map'
 program = require 'commander'
 vbuffer = require 'vinyl-buffer'
 
