@@ -1,5 +1,4 @@
 _ = require 'highland'
-map = require 'vinyl-map'
 path = require 'path'
 vbuffer = require 'vinyl-buffer'
 vfs = require 'vinyl-fs'
