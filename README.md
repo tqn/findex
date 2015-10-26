@@ -22,3 +22,7 @@ Pull requests and issues are not expected, but would be very generous.
 2. Good job!
 3. Create that pull request.
 4. Thanks!
+
+## Todo
+* Make the document actually customizable.
+* Export a program API when `require`d.s
