@@ -1,6 +1,5 @@
 CSON = require 'season'
 elasticsearch = require 'elasticsearch'
-events = require 'events'
 path = require 'path'
 program = require 'commander'
 
