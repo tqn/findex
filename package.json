@@ -16,6 +16,7 @@
     "coffee-script": "^1.10.0",
     "commander": "^2.8.1",
     "elasticsearch": "^8.2.0",
+    "highland": "^2.5.1",
     "season": "^5.3.0",
     "vinyl-buffer": "^1.0.0",
     "vinyl-fs": "^2.1.1"
@@ -24,7 +25,6 @@
     "chai": "^3.3.0",
     "coffee-coverage": "^0.6.3",
     "coveralls": "^2.11.4",
-    "highland": "^2.5.1",
     "istanbul": "^0.4.0",
     "mocha": "^2.3.3"
   },
