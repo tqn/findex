@@ -39,7 +39,7 @@ describe 'findex', ->
     describe 'called with correct arguments', ->
 
       it 'should index successfully', (done) ->
-        exec "node ../bin/index.js -i #{init.index}
+        exec "node ../bin/index -i #{init.index}
           -t commandline ./fixtures/url/",
           cwd: __dirname, (err, stdout, stderr) ->
             # Make sure exec didn't have any issues
@@ -48,7 +48,7 @@ describe 'findex', ->
             done()
 
       it 'should be able to use a customizable document', (done) ->
-        exec "node ../bin/index.js -i #{init.index}
+        exec "node ../bin/index -i #{init.index}
           -t customdoc ./fixtures/url/",
           cwd: __dirname, (err, stdout, stderr) ->
             expect(err).to.not.exist
@@ -70,14 +70,14 @@ describe 'findex', ->
       it 'should output --help when called with no arguments', (done) ->
         # Execute the program in a child process
         # Otherwise it would use the test's arguments
-        exec 'node ../bin/index.js', cwd: __dirname, (err, stdout, stderr) ->
+        exec 'node ../bin/index', cwd: __dirname, (err, stdout, stderr) ->
           expect(err).to.not.exist
           expect(stderr).to.be.empty
           expect(stdout.toString()).to.match /^\s*Usage:/
           done()
 
       it 'should have errors when called with invalid arguments', (done) ->
-        exec 'node ../bin/index.js ./fixtures/url/',
+        exec 'node ../bin/index ./fixtures/url/',
           cwd: __dirname, (err, stdout, stderr) ->
             expect(err).to.not.exist
             expect(stderr).to.not.be.empty
