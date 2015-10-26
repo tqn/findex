@@ -37,7 +37,7 @@ describe 'findex', ->
     @slow 3500
 
 
-    describe 'indexed .url files into elasticsearch', ->
+    describe 'called with correct arguments', ->
 
       it 'should index successfully', (done) ->
         exec "node ../bin/index.js -i #{init.index}
@@ -119,13 +119,11 @@ describe 'findex', ->
       # Get a test file to be sent to elasticsearch
       vfs.src normalize ['test/fixtures/test.file']
         .pipe indexer()
-        .on 'end', done
+        .done done
 
   # Clean up the index
   after 'elasticsearch index cleanup', (done) ->
     # Wait for any ping issues
     setTimeout ->
-      init.es.indices.delete index: init.index
-      .then -> done()
-      .catch done
+      init.es.indices.delete index: init.index, done
     , 2000
