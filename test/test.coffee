@@ -1,5 +1,5 @@
-exec = require('child_process').exec
-expect = require('chai').expect
+{exec} = require 'child_process'
+{expect} = require 'chai'
 path = require 'path'
 vfs = require 'vinyl-fs'
 
