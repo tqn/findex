@@ -6,12 +6,16 @@ init = require './init'
 
 indexer = -> _.pipeline(
   _.through(vbuffer()),
-  _.consume((err, file, push, next) ->
+  _.consume (err, file, push, next) ->
+    # Create a function for one liners
+    pushNext = ->
+      push arguments...
+      next()
+
     setImmediate ->
       # Return empty if no error
-      if err
-        push err
-        next()
+      if err?
+        pushNext err
       else if file is _.nil or file.isNull()
         push null, file
       else
@@ -22,11 +26,8 @@ indexer = -> _.pipeline(
             url: file.contents.toString()
             user: init.user ? undefined
             status: 0
-        .then (res) ->
-          push null, res
-          next()
+        .then (res) -> pushNext null, res
         .catch next
-    )
 )
 
 
