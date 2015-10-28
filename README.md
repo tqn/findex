@@ -26,3 +26,4 @@ Pull requests and issues are not expected, but would be very generous.
 ## Todo
 * Make the document actually customizable.
 * Export a program API when `require`d.
+* Make the indexer run in parallel.
