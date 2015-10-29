@@ -17,6 +17,7 @@
     "commander": "^2.8.1",
     "elasticsearch": "^8.2.0",
     "highland": "^2.5.1",
+    "lodash.template": "^3.6.2",
     "season": "^5.3.0",
     "vinyl-buffer": "^1.0.0",
     "vinyl-fs": "^2.1.1"

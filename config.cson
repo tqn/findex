@@ -3,4 +3,4 @@ index: null
 type: null
 doc:
   status: 0
-  url: '__findex:url'
+  url: '<%= url %>'

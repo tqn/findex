@@ -2,6 +2,7 @@ CSON = require 'season'
 elasticsearch = require 'elasticsearch'
 path = require 'path'
 program = require 'commander'
+template = require 'lodash.template'
 
 configfile = CSON.readFileSync path.join __dirname, '../config.cson'
 
@@ -17,3 +18,13 @@ exports = module.exports = (config = configfile) ->
     return false
 
   return true
+
+
+exports.replaceTemplate = (obj, opts) ->
+  newObj = {}
+  switch typeof obj
+    when 'string' then newObj = template(obj) opts
+    when 'object'
+      newObj[k] = exports.replaceTemplate v, opts for own k, v of obj
+    else newObj = obj
+  return newObj

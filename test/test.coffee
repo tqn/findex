@@ -122,5 +122,5 @@ describe 'findex', ->
   after 'elasticsearch index cleanup', (done) ->
     # Wait for any ping issues
     setTimeout ->
-      init.es.indices.delete index: init.index, done
+      init.es.indices.delete index: init.index, ignore: [404], done
     , 2000

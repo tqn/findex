@@ -9,10 +9,7 @@ indexer = -> _.pipeline(
   _.map (file) -> _ init.es.index
     index: init.index
     type: init.type
-    body:
-      url: file.contents.toString()
-      user: init.user ? undefined
-      status: 0
+    body: init.replaceTemplate init.doc, url: file.contents.toString()
   _.parallel Infinity # Infinite db indexes at once
 )
 
