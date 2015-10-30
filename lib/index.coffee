@@ -20,6 +20,7 @@ program
 if program.args.length isnt 0 and init()
   crawler program.args
     .through indexer()
+    .stopOnError (err) -> throw err
     .toArray (xs) -> console.log "Processed #{xs.length} URLs."
 else
   program.help()

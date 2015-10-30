@@ -17,7 +17,7 @@ exports = module.exports = (config = configfile) ->
     apiVersion: '1.7'
 
   for own k, v of exports when !v?
-    console.error "#{k} not defined"
+    throw new Error "#{k} not defined"
     return false
 
   return true
