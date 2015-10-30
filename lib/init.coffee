@@ -24,10 +24,10 @@ exports = module.exports = (config = configfile) ->
 
 
 exports.replaceTemplate = (obj, opts) ->
-  newObj = {}
-  switch typeof obj
-    when 'string' then newObj = template(obj, evaluate: /(?!)/) opts
+  return switch typeof obj
+    when 'string' then template(obj, evaluate: /(?!)/) opts
     when 'object'
-      newObj[k] = exports.replaceTemplate v, opts for own k, v of obj
-    else newObj = obj
-  return newObj
+      newObj = {}
+      newObj[k] =  (exports.replaceTemplate v, opts for own k, v of obj)
+      newObj
+    else obj
