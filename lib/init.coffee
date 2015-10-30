@@ -1,3 +1,4 @@
+_ = require 'highland'
 CSON = require 'season'
 elasticsearch = require 'elasticsearch'
 path = require 'path'
@@ -8,6 +9,8 @@ configfile = CSON.readFileSync path.join __dirname, '../config.cson'
 
 
 exports = module.exports = (config = configfile) ->
+  # Get config defaults
+  config = _.extend config, configfile
   exports[k] = program[k] ? v for own k, v of config
   exports.es = new elasticsearch.Client
     host: exports.host
