@@ -25,6 +25,7 @@ Pull requests and issues are not expected, but would be very generous.
 
 ## Todo
 - [ ] Make tests faster.
+- [ ] Increase coverage.
 - [x] Make the document actually customizable.
   - [x] Make a test
 - [ ] Export a program API when `require`d.
