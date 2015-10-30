@@ -25,7 +25,8 @@ Pull requests and issues are not expected, but would be very generous.
 
 ## Todo
 - [x] Make the document actually customizable.
-  - [ ] Make a test
+  - [x] Make a test
 - [ ] Export a program API when `require`d.
   - [ ] Make a test
 - [x] Make the indexer run in parallel.
+- [ ] Clean up the todo list.

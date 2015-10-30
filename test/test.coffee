@@ -45,7 +45,7 @@ describe 'findex', ->
 
       it 'should be able to use a customizable document', (done) ->
         exec "node ../bin/index -i #{init.index}
-          -t customdoc ./fixtures/url/",
+          -t customdoc ./fixtures/url/folder2/",
           cwd: __dirname, (err, stdout, stderr) ->
             expect(err).to.not.exist
             expect(stderr).to.be.empty
@@ -56,7 +56,9 @@ describe 'findex', ->
                 type: 'customdoc'
                 body: query: match_all: {}
               .then (res) ->
-                expect(res.hits.hits[0]._source).to.have.all.keys init.doc
+                expect(res.hits.hits[0]._source).to.deep.equal(
+                  init.replaceTemplate init.doc, url: 'http://en.wikipedia.org/'
+                )
                 done()
               .catch done
             , 2000
