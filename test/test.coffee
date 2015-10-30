@@ -75,7 +75,7 @@ describe 'findex', ->
       it 'should have errors when called with invalid arguments', (done) ->
         exec 'node ../bin/index ./fixtures/url/',
           cwd: __dirname, (err, stdout, stderr) ->
-            expect(err).to.not.exist
+            expect(err).to.exist
             expect(stderr).to.not.be.empty
             done()
 
