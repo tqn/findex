@@ -28,6 +28,6 @@ exports.replaceTemplate = (obj, opts) ->
     when 'string' then template(obj, evaluate: /(?!)/) opts
     when 'object'
       newObj = {}
-      newObj[k] =  (exports.replaceTemplate v, opts for own k, v of obj)
+      newObj[k] = exports.replaceTemplate v, opts for own k, v of obj
       newObj
     else obj
