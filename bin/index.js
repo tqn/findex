@@ -2,5 +2,5 @@
 
 (function() {
   require('coffee-script/register');
-  require('../lib/index');
+  module.exports = require('../lib/index');
 }).call(this);

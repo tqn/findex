@@ -10,7 +10,7 @@ configfile = CSON.readFileSync path.join __dirname, '../config.cson'
 
 exports = module.exports = (config = configfile) ->
   # Get config defaults
-  config = _.extend config, configfile
+  config = _.extend config, configfile if config isnt configfile
   exports[k] = program[k] ? v for own k, v of config
   exports.es = new elasticsearch.Client
     host: exports.host
@@ -18,9 +18,7 @@ exports = module.exports = (config = configfile) ->
 
   for own k, v of exports when !v?
     throw new Error "#{k} not defined"
-    return false
 
-  return true
 
 
 exports.replaceTemplate = (obj, opts) ->
