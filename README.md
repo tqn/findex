@@ -24,8 +24,6 @@ Pull requests and issues are not expected, but would be very generous.
 4. Thanks!
 
 ## Todo
-- [ ] Make tests faster.
+- [ ] Cleanup small things while running.
 - [ ] Increase coverage.
-- [x] Make the indexer run in parallel.
-  - [ ] Test
 - [ ] Clean up the todo list.
