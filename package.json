@@ -2,10 +2,10 @@
   "name": "findex",
   "version": "0.3.1",
   "description": "Indexes files from a base directory into elasticsearch",
-  "main": "./bin/index.js",
-  "bin": "./bin/index.js",
+  "main": "./bin/findex.js",
+  "bin": "./bin/findex.js",
   "scripts": {
-    "start": "node ./bin/index.js",
+    "start": "node ./bin/findex.js",
     "test": "mocha && istanbul report text-summary lcov",
     "preversion": "npm test",
     "postversion": "git push --follow-tags"
