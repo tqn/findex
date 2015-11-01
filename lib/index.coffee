@@ -1,16 +1,17 @@
 path = require 'path'
 program = require 'commander'
+Promise = require 'bluebird'
 
 crawler = require './crawler'
 indexer = require './indexer'
 init = require './init'
 
 
-run = (opts = speak: yes) ->
-  crawler program.args
+run = (dirs) -> new Promise (resolve, reject) ->
+  crawler dirs
     .through indexer()
-    .stopOnError (err) -> throw err
-    .toArray (xs) -> console.log "Processed #{xs.length} URLs." if opts.speak
+    .stopOnError reject
+    .toArray resolve
 
 # If called from the command line
 if path.relative(
@@ -32,9 +33,17 @@ if path.relative(
   if program.args.length is 0 then program.help()
   else
     init()
-    run()
+    run program.args
+    .then (xs) -> console.log "Processed #{xs.length} URLs."
+    .catch (err) -> throw err
 
 else # the program is require()d
-  module.exports = (opts) ->
+  module.exports = (opts, dirs, callback) -> new Promise (resolve, reject) ->
     init opts
-    run speak: no
+    promise = run dirs
+    if callback?
+      promise
+      .then (xs) -> callback null, xs
+      .catch callback
+    else
+      resolve promise

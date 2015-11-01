@@ -26,7 +26,6 @@ normalize = (paths = []) ->
 describe 'findex', ->
   @timeout 30000
 
-
   describe 'the command line program', ->
     @timeout 30000
     @slow 3500
@@ -81,6 +80,18 @@ describe 'findex', ->
             expect(stderr).to.not.be.empty
             done()
 
+
+  describe 'the exported program', ->
+
+    # require '..' causes problems with mocha
+    findex = require '../lib/index'
+
+    it 'should return a promise API', ->
+      expect findex index: init.index, type: 'promise', ['./fixtures/url/']
+        .to.have.property('then').with.an.instanceof Function
+
+    it 'should be able to accept and use callbacks', (done) ->
+      findex index: init.index, type: 'callback', ['./fixtures/url/'], -> done()
 
 
   describe 'the file system crawler', ->
