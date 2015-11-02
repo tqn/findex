@@ -24,6 +24,7 @@ Pull requests and issues are not expected, but would be very generous.
 4. Thanks!
 
 ## Todo
+- [ ] Allow command line to change config.
+  - [ ] Make a test.
 - [ ] Cleanup small things while running.
 - [ ] Increase coverage.
-- [ ] Clean up the todo list.
