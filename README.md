@@ -9,7 +9,7 @@
 Crawls a directory you give it to to search for `.url` files, then indexes those URLs into [Elasticsearch](https://www.elastic.co/products/elasticsearch).
 
 ## Setup
-1. Install this package globally.
+1. Install this package globally with `npm i -g tqn/findex#[VERSION TAG]`.
 2. Run `npm bin` to find the location of this installed package.
 3. Edit `config.cson` with the host you want to use, the elasticsearch index, and the elasticsearch type.
 4. Invoke with `findex`. Find usage with `findex --help`
@@ -24,7 +24,6 @@ Pull requests and issues are not expected, but would be very generous.
 4. Thanks!
 
 ## Todo
-- [ ] Allow command line to change config.
-  - [ ] Make a test.
-- [ ] Cleanup small things while running.
+- [ ] Get location of config from command line program
+  - [ ] Test
 - [ ] Increase coverage.
