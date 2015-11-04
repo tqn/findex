@@ -10,18 +10,11 @@ Crawls a directory you give it to to search for `.url` files, then indexes those
 
 ## Setup
 1. Install this package globally with `npm i -g tqn/findex#[VERSION TAG]`.
-2. Run `npm bin` to find the location of this installed package.
-3. Edit `config.cson` with the host you want to use, the elasticsearch index, and the elasticsearch type.
-4. Invoke with `findex`. Find usage with `findex --help`
+2. Invoke with `findex`. Find usage with `findex --help`
 
-## Pull Requests / Issues
-Pull requests and issues are not expected, but would be very generous.
-
-### Steps
-1. Be a good person.
-2. Good job!
-3. Create that pull request.
-4. Thanks!
+### To Configure
+1. Run `npm bin` to find the location of this installed package.
+2. Edit `config.cson` with the host you want to use, the elasticsearch index, and the elasticsearch type.
 
 ## Todo
 - [ ] Get location of config from command line program
