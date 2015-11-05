@@ -2,5 +2,4 @@ host: 'localhost:9200'
 index: null
 type: null
 doc:
-  status: 0
   url: '<%= url %>'
