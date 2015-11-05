@@ -1,6 +1,6 @@
 {
   "name": "findex",
-  "version": "0.4.0",
+  "version": "1.0.0",
   "description": "Indexes files from a base directory into elasticsearch",
   "main": "./bin/findex.js",
   "bin": "./bin/findex.js",
