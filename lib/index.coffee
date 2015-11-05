@@ -30,15 +30,13 @@ if path.relative(
 
 
   # Launch the crawler.
-  if program.config
-    console.log path.join __dirname, '../config.cson'
+  if program.config then console.log path.join __dirname, '../config.cson'
+  else if program.args.length is 0 then program.help()
   else
-    if program.args.length is 0 then program.help()
-    else
-      init()
-      run program.args
-      .then (xs) -> console.log "Processed #{xs.length} URLs."
-      .catch (err) -> throw err
+    init()
+    run program.args
+    .then (xs) -> console.log "Processed #{xs.length} URLs."
+    .catch (err) -> throw err
 
 else # the program is require()d
   module.exports = (opts, dirs, callback) -> new Promise (resolve, reject) ->
