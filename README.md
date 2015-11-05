@@ -18,6 +18,6 @@ Crawls a directory you give it to to search for `.url` files, then indexes those
 
 ## Todo
 - [ ] Get location of config from command line program
-  - [ ] Print out path of `config.cson`
+  - [x] Print out path of `config.cson`
   - [ ] Test
 - [ ] Increase coverage.

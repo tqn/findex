@@ -25,17 +25,20 @@ if path.relative(
     .option '-h, --host [name]', 'Overwrite elasticsearch host'
     .option '-i, --index [name]', 'Overwrite elasticsearch index'
     .option '-t, --type [name]', 'Overwrite elasticsearch type'
-    .option '-u, --user [name]', 'Overwrite user'
+    .option '-c, --config', 'Print location of config file'
     .parse process.argv
 
 
   # Launch the crawler.
-  if program.args.length is 0 then program.help()
+  if program.config
+    console.log path.join __dirname, '../config.cson'
   else
-    init()
-    run program.args
-    .then (xs) -> console.log "Processed #{xs.length} URLs."
-    .catch (err) -> throw err
+    if program.args.length is 0 then program.help()
+    else
+      init()
+      run program.args
+      .then (xs) -> console.log "Processed #{xs.length} URLs."
+      .catch (err) -> throw err
 
 else # the program is require()d
   module.exports = (opts, dirs, callback) -> new Promise (resolve, reject) ->
