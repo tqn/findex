@@ -17,7 +17,4 @@ Crawls a directory you give it to to search for `.url` files, then indexes those
 2. Edit `config.cson` with the host you want to use, the elasticsearch index, and the elasticsearch type.
 
 ## Todo
-- [ ] Get location of config from command line program
-  - [x] Print out path of `config.cson`
-  - [ ] Test
 - [ ] Increase coverage.

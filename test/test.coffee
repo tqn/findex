@@ -80,6 +80,16 @@ describe 'findex', ->
             expect(stderr).to.not.be.empty
             done()
 
+    describe 'the --config option', ->
+
+      it 'should output the config file path', (done) ->
+        exec 'node ../bin/findex.js --config',
+          cwd: __dirname, (err, stdout, stderr) ->
+            expect(err).to.not.exist
+            expect(stderr).to.be.empty
+            expect(path.parse stdout.toString()).to.have.property 'base'
+              .that.equals 'config.cson\n' # \n?
+            done()
 
   describe 'the exported program', ->
 
