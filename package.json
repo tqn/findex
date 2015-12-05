@@ -16,7 +16,7 @@
     "bluebird": "^3.0.3",
     "coffee-script": "^1.10.0",
     "commander": "^2.8.1",
-    "elasticsearch": "^9.0.0",
+    "elasticsearch": "^10.0.1",
     "highland": "^2.5.1",
     "lodash.template": "^3.6.2",
     "season": "^5.3.0",
